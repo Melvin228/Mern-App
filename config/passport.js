@@ -11,7 +11,6 @@ opts.secretOrKey = keys.secretOrKey;
 module.exports = (passport) => {
   passport.use(
     new JwtStrategy(opts, (jwt_payload, done) => {
-      const user = "Regirock";
       User.findById(jwt_payload.id)
         .then((user) => {
           if (user) {
