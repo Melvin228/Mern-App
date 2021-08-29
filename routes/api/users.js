@@ -9,6 +9,7 @@ const JwtAuth = passport.authenticate("jwt", { session: false });
 
 //Load input validation
 const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
 
 //Load user models
 const User = require("../../models/User");
@@ -71,11 +72,18 @@ router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   //Find user by email
   User.findOne({ email }).then((user) => {
     //Check for user
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      errors.email = "User not found";
+      return res.status(404).json({ errors });
     }
 
     //Check for password
@@ -95,7 +103,8 @@ router.post("/login", (req, res) => {
           res.json({ success: true, token: "Bearer " + token });
         });
       } else {
-        return res.status(400).send({ error: "Password incorrect" });
+        errors.password = "Password incorrect";
+        return res.status(400).json(errors);
       }
     });
   });
