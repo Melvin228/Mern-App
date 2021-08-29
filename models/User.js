@@ -3,11 +3,7 @@ const Schema = mongoose.Schema;
 
 //Create schema
 const UserSchema = new Schema({
-  firstname: {
-    type: String,
-    required: true,
-  },
-  lastname: {
+  name: {
     type: String,
     required: true,
   },
@@ -21,7 +17,6 @@ const UserSchema = new Schema({
   },
   avatar: {
     type: String,
-    required: true,
   },
   date: {
     type: Date,

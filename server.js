@@ -24,6 +24,10 @@ app.get("/", (req, res) => {
   res.send("<p>Hello there </p>");
 });
 
+//built in body-parser
+app.use(express.json());
+// app.use(express.urlencoded());
+
 //Use Routes
 app.use("/api/users", users);
 app.use("/api/profile", profile);
