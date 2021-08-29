@@ -1,8 +1,14 @@
 @url=http://localhost:8000/api
+@player =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmI2MzI0OTY5NTc5NTNjNDU4MWZhZiIsImVtYWlsIjoibWVsdmluZ2FuMjgxMUBnbWFpbC5jb20iLCJuYW1lIjoiTWVsdmluIiwiYXZhdGFyIjoiLy93d3cuZ3JhdmF0YXIuY29tL2F2YXRhci9kYmM4Y2NlM2NhMTQzZjhlMmYyYzliMjU3NDY1YjAxYz9zPTIwMCZyPXBnJmQ9bW0iLCJpYXQiOjE2MzAyMzYwMDMsImV4cCI6MTYzMDIzOTYwM30.MQy5ShpCRt7NDyoTPxfgzd3GvXvfJ85rGF6y22WVWVQ
 
 ### 1. Users
 GET {{url}}/users/test HTTP/1.1
 Content-type:application/json
+
+###1. Get current user
+GET  {{url}}/users/current HTTP/1.1
+Content-Type:application/json
+Authorization:Bearer {{player}}
 
 ### 1.Register new user
 POST {{url}}/users/register HTTP/1.1
@@ -15,6 +21,7 @@ Content-Type:application/json
 
 }
 
+
 ###1.Login new user
 POST {{url}}/users/login HTTP/1.1
 Content-Type: application/json
@@ -23,6 +30,7 @@ Content-Type: application/json
     "email":"melvingan2811@gmail.com",
     "password":"123456"
 }
+
 
 
 ###2.Profile

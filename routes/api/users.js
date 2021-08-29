@@ -4,6 +4,8 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/key").secretOrKey;
+const passport = require("passport");
+const JwtAuth = passport.authenticate("jwt", { session: false });
 //Load user models
 const User = require("../../models/User");
 
@@ -85,6 +87,19 @@ router.post("/login", (req, res) => {
         return res.status(400).send({ error: "Password incorrect" });
       }
     });
+  });
+});
+
+//@route GET api/users/current
+//@desc Return current user
+//@access Private
+router.get("/current", JwtAuth, (req, res) => {
+  res.json({
+    msg: "success",
+    id: req.user.id,
+    name: req.user.name,
+    email: req.user.email,
+    avatar: req.user.email,
   });
 });
 
