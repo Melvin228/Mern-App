@@ -1,5 +1,5 @@
 @url=http://localhost:8000/api
-@player =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmI4NGQ2YjM2NjIyYTFlZTg1ODJmZSIsImVtYWlsIjoiam9obkBlbWFpbC5jb20iLCJuYW1lIjoiSm9obiBEb2UiLCJhdmF0YXIiOiIvL3d3dy5ncmF2YXRhci5jb20vYXZhdGFyLzQxMTkzY2RiZmZiZjA2YmUwY2RmMjMxYjI4YzU0YjE4P3M9MjAwJnI9cGcmZD1tbSIsImlhdCI6MTYzMDI5NTQ5OSwiZXhwIjoxNjMwMjk5MDk5fQ.SZmQDGedIKrqIADdWFsm7OKP7uR2G871gtQp0qyUkis
+@player =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmI2MzI0OTY5NTc5NTNjNDU4MWZhZiIsImVtYWlsIjoibWVsdmluZ2FuMjgxMUBnbWFpbC5jb20iLCJuYW1lIjoiTWVsdmluIiwiYXZhdGFyIjoiLy93d3cuZ3JhdmF0YXIuY29tL2F2YXRhci9kYmM4Y2NlM2NhMTQzZjhlMmYyYzliMjU3NDY1YjAxYz9zPTIwMCZyPXBnJmQ9bW0iLCJpYXQiOjE2MzAzMzU4NzMsImV4cCI6MTYzMDMzOTQ3M30.E7LwLAtLRUWXc4mvGqWhvo7cAQIJ19Tb_2IfPpfVsVM
 
 ### 1. Users
 GET {{url}}/users/test HTTP/1.1
@@ -28,7 +28,7 @@ POST {{url}}/users/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email":"john@email.com",
+    "email":"melvingan2811@gmail.com",
     "password":"123456"
 }
 
@@ -43,16 +43,61 @@ GET  {{url}}/profile HTTP/1.1
 Content-Type:application/json
 Authorization:Bearer {{player}}
 
+###2.Get all user profile
+GET  {{url}}/profile/all HTTP/1.1
+Content-Type:application/json
+
+###2.Get current user profile by handle
+GET  {{url}}/profile/handle/johndoe HTTP/1.1
+Content-Type:application/json
+
+###2.Get current user profile by id
+GET  {{url}}/profile/user/612b84d6b36622a1ee8582fesss HTTP/1.1
+Content-Type:application/json
+
 ###2.Create new profile / edit new profile
 POST  {{url}}/profile HTTP/1.1
 Content-Type:application/json
 Authorization:Bearer {{player}}
 
 {
-    "handle":"johndoe",
-    "skills":"HTML,CSS,Javascript,PHP",
-    "status":"Developer"
+    "handle":"melvingan",
+    "skills":"HTML,CSS,Javascript,PHP,React,Python,Express,NodeJs,Wordpress",
+    "status":"Developer",
+    "company":"dotcom",
+    "website":"www.dotcom.com"
+    
 }
+
+###2.Create new experience 
+POST  {{url}}/profile/experience HTTP/1.1
+Content-Type:application/json
+Authorization:Bearer {{player}}
+
+{
+    "title":"Senior developer",
+    "company":"ABC Company",
+    "from":"2020",
+    "to":"2021",
+    "description":"Worked with clients to build website and applications using web technologies"
+    
+}
+
+### 2.Create new education
+POST  {{url}}/profile/education HTTP/1.1
+Content-Type:application/json
+Authorization:Bearer {{player}}
+
+{
+    "school":"ABC school",
+    "degree":"Bachelors",
+    "from":"2020",
+    "to":"2021",
+    "description":"Business information systems",
+    "fieldofstudy":"Computer science"
+    
+}
+
 
 ###3.Posts
 GET {{url}}/posts/test HTTP/1.1
