@@ -1,5 +1,5 @@
 @url=http://localhost:8000/api
-@player =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmI4NGQ2YjM2NjIyYTFlZTg1ODJmZSIsImVtYWlsIjoiam9obkBlbWFpbC5jb20iLCJuYW1lIjoiSm9obiBEb2UiLCJhdmF0YXIiOiIvL3d3dy5ncmF2YXRhci5jb20vYXZhdGFyLzQxMTkzY2RiZmZiZjA2YmUwY2RmMjMxYjI4YzU0YjE4P3M9MjAwJnI9cGcmZD1tbSIsImlhdCI6MTYzMDI0MjU4MywiZXhwIjoxNjMwMjQ2MTgzfQ.ZKwt9DaDqpyS__Jf0euZuc7pVClDIQA9FWBQdYwtNbM
+@player =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmI4NGQ2YjM2NjIyYTFlZTg1ODJmZSIsImVtYWlsIjoiam9obkBlbWFpbC5jb20iLCJuYW1lIjoiSm9obiBEb2UiLCJhdmF0YXIiOiIvL3d3dy5ncmF2YXRhci5jb20vYXZhdGFyLzQxMTkzY2RiZmZiZjA2YmUwY2RmMjMxYjI4YzU0YjE4P3M9MjAwJnI9cGcmZD1tbSIsImlhdCI6MTYzMDI4Njc0MywiZXhwIjoxNjMwMjkwMzQzfQ.DLKJLbzYc-ZjrtHaZfZr0646G6P3ZKP3rtYLsPpAg8o
 
 ### 1. Users
 GET {{url}}/users/test HTTP/1.1
@@ -37,6 +37,11 @@ Content-Type: application/json
 ###2.Profile
 GET {{url}}/profile/test HTTP/1.1
 Content-type:application/json
+
+###2.Get current user profile
+GET  {{url}}/profile HTTP/1.1
+Content-Type:application/json
+Authorization:Bearer {{player}}
 
 ###3.Posts
 GET {{url}}/posts/test HTTP/1.1
