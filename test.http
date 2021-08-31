@@ -1,5 +1,5 @@
 @url=http://localhost:8000/api
-@player =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmI2MzI0OTY5NTc5NTNjNDU4MWZhZiIsImVtYWlsIjoibWVsdmluZ2FuMjgxMUBnbWFpbC5jb20iLCJuYW1lIjoiTWVsdmluIiwiYXZhdGFyIjoiLy93d3cuZ3JhdmF0YXIuY29tL2F2YXRhci9kYmM4Y2NlM2NhMTQzZjhlMmYyYzliMjU3NDY1YjAxYz9zPTIwMCZyPXBnJmQ9bW0iLCJpYXQiOjE2MzAzMzU4NzMsImV4cCI6MTYzMDMzOTQ3M30.E7LwLAtLRUWXc4mvGqWhvo7cAQIJ19Tb_2IfPpfVsVM
+@player = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmRkODg1YWYzZjM3NGNiYjRiY2QzYyIsImVtYWlsIjoibWF5QGVtYWlsLmNvbSIsIm5hbWUiOiJNYXkgRG9lIiwiYXZhdGFyIjoiLy93d3cuZ3JhdmF0YXIuY29tL2F2YXRhci9mMjkxODVhMzk2MDBkMzNmZjk5ZjVjOTk2MTJhZmQwNz9zPTIwMCZyPXBnJmQ9bW0iLCJpYXQiOjE2MzAzOTQ1MzgsImV4cCI6MTYzMDM5ODEzOH0.FFD5Ge7bcJ3PiAl9PHiJVaZ4MoI_D1WrMrh6HJv197g
 
 ### 1. Users
 GET {{url}}/users/test HTTP/1.1
@@ -15,8 +15,8 @@ POST {{url}}/users/register HTTP/1.1
 Content-Type:application/json
 
 {
-    "name":"John Doe",
-    "email":"john@email.com",
+    "name":"May Doe",
+    "email":"may@email.com",
     "password":"123456",
     "password2":"123456"
 
@@ -28,7 +28,7 @@ POST {{url}}/users/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email":"melvingan2811@gmail.com",
+    "email":"may@email.com",
     "password":"123456"
 }
 
@@ -61,7 +61,7 @@ Content-Type:application/json
 Authorization:Bearer {{player}}
 
 {
-    "handle":"melvingan",
+    "handle":"maydoe",
     "skills":"HTML,CSS,Javascript,PHP,React,Python,Express,NodeJs,Wordpress",
     "status":"Developer",
     "company":"dotcom",
@@ -75,11 +75,11 @@ Content-Type:application/json
 Authorization:Bearer {{player}}
 
 {
-    "title":"Senior developer",
-    "company":"ABC Company",
+    "title":" developer",
+    "company":"ABCD Company",
     "from":"2020",
-    "to":"2021",
-    "description":"Worked with clients to build website and applications using web technologies"
+    "to":"2021"
+    
     
 }
 
@@ -97,6 +97,22 @@ Authorization:Bearer {{player}}
     "fieldofstudy":"Computer science"
     
 }
+
+### 2.Delete experience
+DELETE  {{url}}/profile/experience/612dd4a9b97d1ee967ee63d5 HTTP/1.1
+Content-Type:application/json
+Authorization:Bearer {{player}}
+
+
+### 2.Delete education
+DELETE  {{url}}/profile/education/612cf7e6bc539e63b3e91b535 HTTP/1.1
+Content-Type:application/json
+Authorization:Bearer {{player}}
+
+### 2.Delete user and profile
+DELETE  {{url}}/profile HTTP/1.1
+Content-Type:application/json
+Authorization:Bearer {{player}}
 
 
 ###3.Posts
