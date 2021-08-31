@@ -118,6 +118,14 @@ Authorization:Bearer {{player}}
 GET {{url}}/posts/test HTTP/1.1
 Content-type:application/json
 
+###3.Get all post
+GET {{url}}/posts/ HTTP/1.1
+Content-type:application/json
+
+###3.Get post by id
+GET {{url}}/posts/612de3a1a49ba8b12b91be98 HTTP/1.1
+Content-type:application/json
+
 ###3.Create post
 POST {{url}}/posts/ HTTP/1.1
 Content-type:application/json
@@ -125,7 +133,12 @@ Authorization:Bearer {{player}}
 
 {
     "text":"This is a test",
-    "name":"Melvin",
-    "avatar":"//www.gravatar.com/avatar/dbc8cce3ca143f8e2f2c9b257465b01c?s=200&r=pg&d=mm"
+    "name":"John"
+    
 
 }
+
+###3.Delete post BY ID
+DELETE {{url}}/posts/612de3a1a49ba8b12b91be98 HTTP/1.1
+Content-type:application/json
+Authorization:Bearer {{player}}
