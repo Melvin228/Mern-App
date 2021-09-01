@@ -8,6 +8,7 @@ const Register = () => {
     password: "",
     password2: "",
   });
+  const [errors, setErrors] = useState({});
 
   const submitHandler = (e) => {
     e.preventDefault();
