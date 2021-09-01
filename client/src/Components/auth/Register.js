@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useForm from "../Hooks/useForm";
 import axios from "axios";
+import classnames from "classnames";
 
 const Register = () => {
   const [values, handleChange] = useForm({
@@ -23,7 +24,9 @@ const Register = () => {
     axios
       .post("/api/users/register", newUser)
       .then((res) => console.log(res.data))
-      .catch((err) => console.log(err.response.data));
+      .catch((err) => {
+        setErrors(err.response.data);
+      });
   };
 
   return (
@@ -33,54 +36,73 @@ const Register = () => {
           <div className="col-md-8 m-auto">
             <h1 className="display-4 text-center">Sign up</h1>
             <p className="lead text-center">Create your devConnector account</p>
-            <form onSubmit={submitHandler}>
+            <form noValidate onSubmit={submitHandler}>
               <div className="form-group">
                 <input
                   type="text"
-                  className="form-control form-control-lg"
+                  className={classnames("form-control form-control", {
+                    "is-invalid": errors.name,
+                  })}
                   placeholder="Name"
                   name="name"
                   value={values.name}
                   onChange={handleChange}
                 />
+                {errors.name && (
+                  <div className="invalid-feedback">{errors.name}</div>
+                )}
                 <div className="form-group">
                   <input
                     type="email"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control", {
+                      "is-invalid": errors.email,
+                    })}
                     placeholder="Email address"
                     value={values.email}
                     name="email"
                     onChange={handleChange}
                   />
+                  {errors.email && (
+                    <div className="invalid-feedback">{errors.email}</div>
+                  )}
+                  <small className="form-text text-muted">
+                    This site uses Gravatar so if you want a profile image, use
+                    a Gravatar email
+                  </small>
                 </div>
                 <div className="form-group">
                   <input
                     type="password"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control", {
+                      "is-invalid": errors.password,
+                    })}
                     placeholder="Password"
                     value={values.password}
                     name="password"
                     onChange={handleChange}
                   />
+                  {errors.password && (
+                    <div className="invalid-feedback">{errors.password}</div>
+                  )}
                 </div>
                 <div className="form-group">
                   <input
                     type="password"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control", {
+                      "is-invalid": errors.password2,
+                    })}
                     placeholder="Confirm password"
                     value={values.password2}
                     name="password2"
                     onChange={handleChange}
                   />
+                  {errors.password2 && (
+                    <div className="invalid-feedback">{errors.password2}</div>
+                  )}
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </div>
             </form>
-            <h1>Testing</h1>
-            <h2>{values.name}</h2>
-            <h2>{values.email}</h2>
-            <h2>{values.password}</h2>
-            <h2>{values.password2}</h2>
           </div>
         </div>
       </div>
