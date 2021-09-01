@@ -12,7 +12,14 @@ const Register = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("HELLO");
+    const user = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+      password2: values.password2,
+    };
+
+    console.log(user);
   };
 
   return (
