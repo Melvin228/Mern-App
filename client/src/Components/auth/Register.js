@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useForm from "../Hooks/useForm";
+import axios from "axios";
 
 const Register = () => {
   const [values, handleChange] = useForm({
@@ -12,14 +13,17 @@ const Register = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const user = {
+    const newUser = {
       name: values.name,
       email: values.email,
       password: values.password,
       password2: values.password2,
     };
 
-    console.log(user);
+    axios
+      .post("/api/users/register", newUser)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.response.data));
   };
 
   return (
