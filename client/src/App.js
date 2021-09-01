@@ -1,17 +1,26 @@
 import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //Components
 import Navbar from "./Components/Layout/Navbar";
 import Footer from "./Components/Layout/Footer";
 import Landing from "./Components/Layout/Landing";
+import Register from "./Components/auth/Register";
+import Login from "./Components/auth/Login";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Landing />
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Route exact path="/" component={Landing}></Route>
+        <div className="container">
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
