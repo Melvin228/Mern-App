@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import useForm from "../Hooks/useForm";
-import axios from "axios";
+import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import { registeruser } from "../../actions/authActions";
 
-const Register = ({ registeruser }) => {
+const Register = ({ registeruser, errors, history }) => {
   const [values, handleChange] = useForm({
     name: "",
     email: "",
     password: "",
     password2: "",
   });
-  const [errors, setErrors] = useState({});
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -23,14 +22,7 @@ const Register = ({ registeruser }) => {
       password: values.password,
       password2: values.password2,
     };
-    registeruser(newUser);
-    //   axios
-    //     .post("/api/users/register", newUser)
-    //     .then((res) => console.log(res.data))
-    //     .catch((err) => {
-    //       setErrors(err.response.data);
-    //     });
-    // };
+    registeruser(newUser, history);
   };
   return (
     <div className="register">
@@ -116,6 +108,12 @@ const Register = ({ registeruser }) => {
 Register.propTypes = {
   registeruser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
-export default connect(null, { registeruser })(Register);
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { registeruser })(withRouter(Register));
