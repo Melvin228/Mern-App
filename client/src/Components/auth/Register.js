@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import useForm from "../Hooks/useForm";
 import axios from "axios";
 import classnames from "classnames";
+import { connect } from "react-redux";
+import { registeruser } from "../../actions/authActions";
 
-const Register = () => {
+const Register = ({ registeruser }) => {
   const [values, handleChange] = useForm({
     name: "",
     email: "",
@@ -20,15 +23,15 @@ const Register = () => {
       password: values.password,
       password2: values.password2,
     };
-
-    axios
-      .post("/api/users/register", newUser)
-      .then((res) => console.log(res.data))
-      .catch((err) => {
-        setErrors(err.response.data);
-      });
+    registeruser(newUser);
+    //   axios
+    //     .post("/api/users/register", newUser)
+    //     .then((res) => console.log(res.data))
+    //     .catch((err) => {
+    //       setErrors(err.response.data);
+    //     });
+    // };
   };
-
   return (
     <div className="register">
       <div className="container">
@@ -110,4 +113,9 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  registeruser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+export default connect(null, { registeruser })(Register);
